@@ -8,7 +8,7 @@
 - (id) init {
   if (self = [super init]) {
     self.bannerMaxWidth = 350.0;
-    self.bannerHeight = 60.0;
+    self.bannerHeight = 64.0;
   }
   return self;
 }
@@ -80,7 +80,7 @@
                    animations:^{
                      CGRect newFrame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
                      banner.frame = newFrame;
-                     banner.alpha = 0.9;
+                     banner.alpha = 0.95;
                    } completion:^(BOOL finished) {
                      // Empty.
                    }];

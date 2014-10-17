@@ -1,8 +1,9 @@
 #import "JCNotificationBannerView.h"
 
 const CGFloat kJCNotificationBannerViewOutlineWidth = 2.0;
-const CGFloat kJCNotificationBannerViewMarginX = 15.0;
-const CGFloat kJCNotificationBannerViewMarginY = 5.0;
+const CGFloat kJCNotificationBannerViewMarginX = 13.0;
+const CGFloat kJCNotificationBannerViewMarginY = 3.0;
+const CGFloat kJCNotificationIconImageViewSize = 20.0;
 
 @interface JCNotificationBannerView () {
   BOOL isPresented;
@@ -27,9 +28,12 @@ const CGFloat kJCNotificationBannerViewMarginY = 5.0;
 
     self.backgroundColor = [UIColor clearColor];
     self.iconImageView = [UIImageView new];
+    self.iconImageView.image = [UIImage imageNamed:@"Icon.png"];
+    self.iconImageView.layer.cornerRadius = 3.0;
+    self.iconImageView.layer.masksToBounds = YES;
     [self addSubview:self.iconImageView];
     self.titleLabel = [UILabel new];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     self.titleLabel.textColor = [UIColor lightTextColor];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:self.titleLabel];
@@ -94,11 +98,14 @@ const CGFloat kJCNotificationBannerViewMarginY = 5.0;
   CGFloat currentX = borderX;
   CGFloat currentY = borderY;
   CGFloat contentWidth = self.frame.size.width - (borderX * 2.0);
-
   currentY += 2.0;
+  
+  self.iconImageView.frame = CGRectMake(currentX, currentY, kJCNotificationIconImageViewSize, kJCNotificationIconImageViewSize);
+  currentX += kJCNotificationIconImageViewSize + borderX;
+  
   if (hasTitle) {
-    self.titleLabel.frame = CGRectMake(currentX, currentY, contentWidth, 22.0);
-    currentY += 22.0;
+    self.titleLabel.frame = CGRectMake(currentX, currentY, contentWidth, 15.0);
+    currentY += 15.0;
   }
   self.messageLabel.frame = CGRectMake(currentX, currentY, contentWidth, (self.frame.size.height - borderY) - currentY);
   [self.messageLabel sizeToFit];
